@@ -55,7 +55,9 @@ export class LoginPage {
       console.log(this.loginForm.value);
     } else {
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
-        this.nav.setRoot(HomePage);
+        this.loading.dismiss().then( () => {
+          this.nav.setRoot(HomePage);
+        });
       }, error => {
         this.loading.dismiss().then( () => {
           let alert = this.alertCtrl.create({
@@ -71,9 +73,7 @@ export class LoginPage {
         });
       });
       
-      this.loading = this.loadingCtrl.create({
-        dismissOnPageChange: true,
-      });
+      this.loading = this.loadingCtrl.create();
       this.loading.present();
     }
   }
