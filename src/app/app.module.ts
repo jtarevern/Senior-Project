@@ -45,7 +45,7 @@ import { ProfileData } from '../providers/profile-data';
     SignupPage
   ],
   providers: [
-    [{provide: ErrorHandler, useClass: IonicErrorHandler}],
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthData,
     EventData,
     ProfileData
