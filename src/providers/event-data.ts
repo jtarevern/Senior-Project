@@ -9,7 +9,7 @@ export class EventData {
 
   constructor() {
     this.currentUser = firebase.auth().currentUser.uid;
-    this.eventList = firebase.database().ref('userProfile/' + this.currentUser + '/eventList');
+    this.eventList = firebase.database().ref(`userProfile/${this.currentUser}/eventList`);
     this.profilePictureRef = firebase.storage().ref('/guestProfile/');
 
   }
