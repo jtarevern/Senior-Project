@@ -1,4 +1,7 @@
-import { NavController, LoadingController, AlertController } from 'ionic-angular';
+import { 
+  NavController, 
+  LoadingController, 
+  AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthData } from '../../providers/auth-data';
@@ -10,25 +13,15 @@ import { EmailValidator } from '../../validators/email';
 })
 export class ResetPasswordPage {
   public resetPasswordForm;
-  emailChanged: boolean = false;
-  passwordChanged: boolean = false;
-  submitAttempt: boolean = false;
 
 
-  constructor(public authData: AuthData, public formBuilder: FormBuilder, public nav: NavController,
-    public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
+  constructor(public authData: AuthData, public formBuilder: FormBuilder, 
+    public nav: NavController, public loadingCtrl: LoadingController, 
+    public alertCtrl: AlertController) {
 
     this.resetPasswordForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
     })
-  }
-
-  /**
-   * Receives an input field and sets the corresponding fieldChanged property to 'true' to help with the styles.
-   */
-  elementChanged(input){
-    let field = input.inputControl.name;
-    this[field + "Changed"] = true;
   }
 
   /**
@@ -38,9 +31,6 @@ export class ResetPasswordPage {
    * If the form is invalid it will just log the form value, feel free to handle that as you like.
    */
   resetPassword(){
-
-    this.submitAttempt = true;
-
     if (!this.resetPasswordForm.valid){
       console.log(this.resetPasswordForm.value);
     } else {
@@ -70,12 +60,8 @@ export class ResetPasswordPage {
             }
           ]
         });
-
         errorAlert.present();
       });
     }
-
   }
-
-
 }

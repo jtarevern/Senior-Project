@@ -1,4 +1,7 @@
-import { NavController, LoadingController, AlertController } from 'ionic-angular';
+import { 
+  NavController, 
+  LoadingController, 
+  AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthData } from '../../providers/auth-data';
@@ -13,9 +16,6 @@ import { EmailValidator } from '../../validators/email';
 })
 export class LoginPage {
   public loginForm;
-  emailChanged: boolean = false;
-  passwordChanged: boolean = false;
-  submitAttempt: boolean = false;
   loading: any;
 
   constructor(public nav: NavController, public authData: AuthData, public formBuilder: FormBuilder,
@@ -34,23 +34,12 @@ export class LoginPage {
   }
 
   /**
-   * Receives an input field and sets the corresponding fieldChanged property to 'true' to help with the styles.
-   */
-  elementChanged(input){
-    let field = input.inputControl.name;
-    this[field + "Changed"] = true;
-  }
-
-  /**
    * If the form is valid it will call the AuthData service to log the user in displaying a loading component while
    * the user waits.
    *
    * If the form is invalid it will just log the form value, feel free to handle that as you like.
    */
   loginUser(){
-
-    this.submitAttempt = true;
-
     if (!this.loginForm.valid){
       console.log(this.loginForm.value);
     } else {
