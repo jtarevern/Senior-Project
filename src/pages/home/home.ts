@@ -9,22 +9,12 @@ import { EventListPage } from '../event-list/event-list';
   templateUrl: 'home.html',
 })
 export class HomePage {
-  constructor(public nav: NavController) {
-    this.nav = nav;
-  }
+  constructor(public navCtrl: NavController) {}
 
-  goToProfile(){
-    this.nav.push(ProfilePage);
-  }
+  goToProfile(){ this.navCtrl.push(ProfilePage); }
 
-  goToCreate(){
-    this.nav.push(EventCreatePage);
-  }
+  goToCreate(){ this.navCtrl.push(EventCreatePage); }
 
-  goToList(){
-    this.nav.push(EventListPage);
-  }
-
-
+  goToList(){ this.navCtrl.push(EventListPage); }
 
 }

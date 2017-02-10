@@ -30,22 +30,29 @@ export class ProfileData {
     });
   }
 
-  updateEmail(newEmail: string): any {
-    this.currentUser.updateEmail(newEmail).then(() => {
-      this.userProfile.child(this.currentUser.uid).update({
-        email: newEmail
+  updateEmail(newEmail: string, password: string): Promise<any> {
+    const credential =  firebase.auth.EmailAuthProvider
+      .credential(this.currentUser.email, password);
+
+    return this.currentUser.reauthenticate(credential).then( user => {
+      this.currentUser.updateEmail(newEmail).then( user => {
+        this.userProfile.child(this.currentUser.uid)
+          .update({ email: newEmail });
       });
-    }, (error) => {
-      console.log(error);
     });
   }
 
 
-  updatePassword(newPassword: string): any {
-    this.currentUser.updatePassword(newPassword).then(() => {
-      console.log("Password Changed");
-    }, (error) => {
-      console.log(error);
+  updatePassword(newPassword: string, oldPassword: string): Promise<any> {
+    const credential =  firebase.auth.EmailAuthProvider
+      .credential(this.currentUser.email, oldPassword);
+
+    return this.currentUser.reauthenticate(credential).then( user => {
+      this.currentUser.updatePassword(newPassword).then( user => {
+        console.log("Password Changed");
+      }, error => {
+        console.log(error);
+      });
     });
   }
 

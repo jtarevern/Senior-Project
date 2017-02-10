@@ -29,8 +29,6 @@ export class EventData {
       price: eventPrice * 1,
       cost: eventCost * 1,
       revenue: eventCost * -1
-    }).then( newEvent => {
-      this.eventList.child(newEvent.key).child('id').set(newEvent.key);
     });
   }
 

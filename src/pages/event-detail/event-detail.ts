@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { EventData } from '../../providers/event-data';
-import { Camera } from 'ionic-native';
+import { Camera } from '@ionic-native/camera';
 
 @Component({
   selector: 'page-event-detail',
@@ -11,13 +11,12 @@ export class EventDetailPage {
   currentEvent: any;
   guestName: string = '';
   guestPicture: any = null;
-  constructor(public nav: NavController, public navParams: NavParams, public eventData: EventData) {
-    this.navParams = navParams;
+  constructor(public nav: NavController, public navParams: NavParams, public eventData: EventData) {}
 
-    this.eventData.getEventDetail(this.navParams.get('eventId')).on('value', (snapshot) => {
+  ionViewDidEnter(){
+    this.eventData.getEventDetail(this.navParams.get('eventId')).on('value', snapshot => {
       this.currentEvent = snapshot.val();
     });
-
   }
 
   addGuest(guestName) {

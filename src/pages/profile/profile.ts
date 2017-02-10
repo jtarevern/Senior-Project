@@ -12,19 +12,20 @@ export class ProfilePage {
   public userProfile: any;
   public birthDate: string;
 
-  constructor(public nav: NavController, public profileData: ProfileData,
+  constructor(public navCtrl: NavController, public profileData: ProfileData,
     public authData: AuthData, public alertCtrl: AlertController) {
+  }
 
+  ionViewDidEnter(){
     this.profileData.getUserProfile().on('value', (data) => {
       this.userProfile = data.val();
       this.birthDate = this.userProfile.birthDate;
     });
-
   }
 
   logOut(){
     this.authData.logoutUser().then(() => {
-      this.nav.setRoot(LoginPage);
+      this.navCtrl.setRoot(LoginPage);
     });
   }
 
@@ -69,6 +70,11 @@ export class ProfilePage {
           name: 'newEmail',
           placeholder: 'Your new email',
         },
+        {
+          name: 'password',
+          placeholder: 'Your password',
+          type: 'password'
+        },
       ],
       buttons: [
         {
@@ -77,7 +83,7 @@ export class ProfilePage {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updateEmail(data.newEmail);
+            this.profileData.updateEmail(data.newEmail, data.password);
           }
         }
       ]
@@ -93,6 +99,11 @@ export class ProfilePage {
           placeholder: 'Your new password',
           type: 'password'
         },
+        {
+          name: 'oldPassword',
+          placeholder: 'Your old password',
+          type: 'password'
+        },
       ],
       buttons: [
         {
@@ -101,7 +112,7 @@ export class ProfilePage {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updatePassword(data.newPassword);
+            this.profileData.updatePassword(data.newPassword, data.oldPassword);
           }
         }
       ]

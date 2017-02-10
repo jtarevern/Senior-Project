@@ -8,14 +8,11 @@ import { EventData } from '../../providers/event-data';
 })
 export class EventCreatePage {
 
-  constructor(public nav: NavController, public eventData: EventData) {
-    this.nav = nav;
-    this.eventData = eventData;
-  }
+  constructor(public navCtrl: NavController, public eventData: EventData) {}
 
   createEvent(eventName: string, eventDate: string, eventPrice: number, eventCost: number) {
     this.eventData.createEvent(eventName, eventDate, eventPrice, eventCost).then( () => {
-      this.nav.pop();
+      this.navCtrl.pop();
     });
   }
 

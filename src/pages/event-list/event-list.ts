@@ -10,10 +10,9 @@ import { EventData } from '../../providers/event-data';
 export class EventListPage {
   public eventList: any;
 
-  constructor(public nav: NavController, public eventData: EventData) {
-    this.nav = nav;
-    this.eventData = eventData;
+  constructor(public navCtrl: NavController, public eventData: EventData) {}
 
+  ionViewDidEnter(){
     this.eventData.getEventList().on('value', snapshot => {
       let rawList = [];
       snapshot.forEach( snap => {
@@ -29,8 +28,6 @@ export class EventListPage {
   }
 
   goToEventDetail(eventId){
-    this.nav.push(EventDetailPage, {
-      eventId: eventId,
-    });
+    this.navCtrl.push(EventDetailPage, { eventId: eventId });
   }
 }
