@@ -22,6 +22,7 @@ export class EventListPage {
           price: snap.val().price,
           date: snap.val().date,
         });
+      return false
       });
       this.eventList = rawList;
     });

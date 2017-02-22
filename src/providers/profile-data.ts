@@ -3,8 +3,8 @@ import firebase from 'firebase';
 
 @Injectable()
 export class ProfileData {
-  public userProfile: any;
-  public currentUser: any;
+  public userProfile: firebase.database.Reference;
+  public currentUser: firebase.User;
 
 
   constructor() {
@@ -13,24 +13,24 @@ export class ProfileData {
 
   }
 
-  getUserProfile(): any {
+  getUserProfile(): firebase.database.Reference {
     return this.userProfile.child(this.currentUser.uid);
   }
 
-  updateName(firstName: string, lastName: string): any {
+  updateName(firstName: string, lastName: string): firebase.Promise<any> {
     return this.userProfile.child(this.currentUser.uid).update({
       firstName: firstName,
       lastName: lastName,
     });
   }
 
-  updateDOB(birthDate: string): any {
+  updateDOB(birthDate: string): firebase.Promise<any> {
     return this.userProfile.child(this.currentUser.uid).update({
       birthDate: birthDate,
     });
   }
 
-  updateEmail(newEmail: string, password: string): Promise<any> {
+  updateEmail(newEmail: string, password: string): firebase.Promise<any> {
     const credential =  firebase.auth.EmailAuthProvider
       .credential(this.currentUser.email, password);
 
@@ -43,7 +43,7 @@ export class ProfileData {
   }
 
 
-  updatePassword(newPassword: string, oldPassword: string): Promise<any> {
+  updatePassword(newPassword: string, oldPassword: string): firebase.Promise<any> {
     const credential =  firebase.auth.EmailAuthProvider
       .credential(this.currentUser.email, oldPassword);
 

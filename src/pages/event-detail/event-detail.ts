@@ -11,6 +11,7 @@ export class EventDetailPage {
   currentEvent: any;
   guestName: string = '';
   guestPicture: any = null;
+  
   constructor(public nav: NavController, public navParams: NavParams, public eventData: EventData) {}
 
   ionViewDidEnter(){

@@ -3,9 +3,9 @@ import firebase from 'firebase';
 
 @Injectable()
 export class EventData {
-  public currentUser: any;
-  public eventList: any;
-  public profilePictureRef: any;
+  public currentUser: string;
+  public eventList: firebase.database.Reference;
+  public profilePictureRef: firebase.storage.Reference;
 
   constructor() {
     this.currentUser = firebase.auth().currentUser.uid;
@@ -14,15 +14,16 @@ export class EventData {
 
   }
 
-  getEventList(): any {
+  getEventList(): firebase.database.Reference {
     return this.eventList;
   }
 
-  getEventDetail(eventId): any {
+  getEventDetail(eventId): firebase.database.Reference {
     return this.eventList.child(eventId);
   }
 
-  createEvent(eventName: string, eventDate: string, eventPrice: number, eventCost: number): any {
+  createEvent(eventName: string, eventDate: string, eventPrice: number, 
+    eventCost: number): firebase.Promise<any> {
     return this.eventList.push({
       name: eventName,
       date: eventDate,
@@ -32,7 +33,7 @@ export class EventData {
     });
   }
 
-  addGuest(guestName, eventId, eventPrice, guestPicture = null): any {
+  addGuest(guestName, eventId, eventPrice, guestPicture = null): firebase.Promise<any> {
     return this.eventList.child(eventId).child('guestList').push({
       guestName: guestName
     }).then((newGuest) => {

@@ -20,7 +20,7 @@ export class AuthData {
    * @param  {string} email    [User's email address]
    * @param  {string} password [User's password]
    */
-  loginUser(email: string, password: string): any {
+  loginUser(email: string, password: string): firebase.Promise<any> {
     return this.fireAuth.signInWithEmailAndPassword(email, password);
   }
 
@@ -32,7 +32,7 @@ export class AuthData {
    * @param  {string} email    [User's email address]
    * @param  {string} password [User's password]
    */
-  signupUser(email: string, password: string): any {
+  signupUser(email: string, password: string): firebase.Promise<any> {
     return this.fireAuth.createUserWithEmailAndPassword(email, password).then((newUser) => {
       this.userProfile.child(newUser.uid).set({
         email: email
@@ -47,14 +47,14 @@ export class AuthData {
    *
    * @param  {string} email    [User's email address]
    */
-  resetPassword(email: string): any {
+  resetPassword(email: string): firebase.Promise<any> {
     return this.fireAuth.sendPasswordResetEmail(email);
   }
 
   /**
    * This function doesn't take any params, it just logs the current user out of the app.
    */
-  logoutUser(): any {
+  logoutUser(): firebase.Promise<any> {
     return this.fireAuth.signOut();
   }
 

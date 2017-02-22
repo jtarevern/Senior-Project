@@ -39,7 +39,7 @@ export class LoginPage {
    *
    * If the form is invalid it will just log the form value, feel free to handle that as you like.
    */
-  loginUser(){
+  loginUser(): void {
     if (!this.loginForm.valid){
       console.log(this.loginForm.value);
     } else {
@@ -67,11 +67,11 @@ export class LoginPage {
     }
   }
 
-  goToSignup(){
+  goToSignup(): void {
     this.nav.push(SignupPage);
   }
 
-  goToResetPassword(){
+  goToResetPassword(): void {
     this.nav.push(ResetPasswordPage);
   }
 
