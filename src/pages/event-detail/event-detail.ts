@@ -17,6 +17,7 @@ export class EventDetailPage {
   ionViewDidEnter(){
     this.eventData.getEventDetail(this.navParams.get('eventId')).on('value', snapshot => {
       this.currentEvent = snapshot.val();
+      this.currentEvent.id = snapshot.key;
     });
   }
 
