@@ -17,6 +17,11 @@ import { AuthData } from '../providers/auth-data';
 import { EventData } from '../providers/event-data';
 import { ProfileData } from '../providers/profile-data';
 
+// Import Plugin providers.
+import { Camera } from '@ionic-native/camera';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -48,7 +53,10 @@ import { ProfileData } from '../providers/profile-data';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthData,
     EventData,
-    ProfileData
+    ProfileData,
+    Camera,
+    SplashScreen,
+    StatusBar
   ]
 })
 export class AppModule {}

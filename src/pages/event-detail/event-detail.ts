@@ -12,7 +12,8 @@ export class EventDetailPage {
   guestName: string = '';
   guestPicture: any = null;
   
-  constructor(public nav: NavController, public navParams: NavParams, public eventData: EventData) {}
+  constructor(public nav: NavController, public navParams: NavParams, 
+    public eventData: EventData, public cameraPlugin: Camera) {}
 
   ionViewDidEnter(){
     this.eventData.getEventDetail(this.navParams.get('eventId')).on('value', snapshot => {
@@ -29,12 +30,12 @@ export class EventDetailPage {
   }
 
   takePicture(){
-    Camera.getPicture({
+    this.cameraPlugin.getPicture({
       quality : 95,
-      destinationType : Camera.DestinationType.DATA_URL,
-      sourceType : Camera.PictureSourceType.CAMERA,
+      destinationType : this.cameraPlugin.DestinationType.DATA_URL,
+      sourceType : this.cameraPlugin.PictureSourceType.CAMERA,
       allowEdit : true,
-      encodingType: Camera.EncodingType.PNG,
+      encodingType: this.cameraPlugin.EncodingType.PNG,
       targetWidth: 500,
       targetHeight: 500,
       saveToPhotoAlbum: true
