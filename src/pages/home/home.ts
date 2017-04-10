@@ -10,11 +10,11 @@ import { EventListPage } from '../event-list/event-list';
 })
 export class HomePage {
   constructor(public navCtrl: NavController) {}
-
-  goToProfile(){ this.navCtrl.push(ProfilePage); }
+goToProfile(){ this.navCtrl.push(ProfilePage); }
 
   goToCreate(){ this.navCtrl.push(EventCreatePage); }
 
   goToList(){ this.navCtrl.push(EventListPage); }
+  
 
 }

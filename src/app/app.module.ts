@@ -11,6 +11,10 @@ import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { SignupPage } from '../pages/signup/signup';
+import { TabsPage } from '../pages/tabs/tabs';
+import { UserProfilePage } from '../pages/user-profile/user-profile';
+
+
 
 // Import providers
 import { AuthData } from '../providers/auth-data';
@@ -32,7 +36,9 @@ import { StatusBar } from '@ionic-native/status-bar';
     LoginPage,
     ProfilePage,
     ResetPasswordPage,
-    SignupPage
+    SignupPage,
+    TabsPage,
+    UserProfilePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -47,7 +53,9 @@ import { StatusBar } from '@ionic-native/status-bar';
     LoginPage,
     ProfilePage,
     ResetPasswordPage,
-    SignupPage
+    SignupPage,
+    TabsPage,
+    UserProfilePage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

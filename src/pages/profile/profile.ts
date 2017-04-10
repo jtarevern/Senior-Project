@@ -10,7 +10,7 @@ import { LoginPage } from '../login/login';
 })
 export class ProfilePage {
   public userProfile: any;
-  public birthDate: string;
+  //public birthDate: string;
 
   constructor(public navCtrl: NavController, public profileData: ProfileData,
     public authData: AuthData, public alertCtrl: AlertController) {
@@ -19,7 +19,7 @@ export class ProfilePage {
   ionViewDidEnter(){
     this.profileData.getUserProfile().on('value', (data) => {
       this.userProfile = data.val();
-      this.birthDate = this.userProfile.birthDate;
+      //this.birthDate = this.userProfile.birthDate;
     });
   }
 
@@ -59,9 +59,9 @@ export class ProfilePage {
     alert.present();
   }
 
-  updateDOB(birthDate){
-    this.profileData.updateDOB(birthDate);
-  }
+  //updateDOB(birthDate){
+   //this.profileData.updateDOB(birthDate);
+  //}
 
   updateEmail(){
     let alert = this.alertCtrl.create({

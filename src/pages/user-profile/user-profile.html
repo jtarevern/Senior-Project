@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Your Posts</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+
+
+
+
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let event of eventList" (click)="goToEventDetail(event.id)">
+      <h2>{{event?.name}}</h2>
+      <p>caption: <strong>${{event?.caption}}</strong></p>
+      <p>Hashtags: <strong>{{event?.hashtags}}</strong></p>
+    </ion-item>
+  </ion-list>
+</ion-content>

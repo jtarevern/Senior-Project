@@ -3,8 +3,12 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+//import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { TabsPage } from '../pages/tabs/tabs';
+import { EventCreatePage } from '../event-create/event-create';
+
+
 
 import firebase from 'firebase';
 
@@ -15,17 +19,21 @@ import firebase from 'firebase';
 export class MyApp {
   rootPage: any;
   zone: NgZone;
+  pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, private statusBar: StatusBar, 
     private splashScreen: SplashScreen) {
     this.zone = new NgZone({});
     firebase.initializeApp({
-      apiKey: "AIzaSyBwEUe6x_w_yLFrr--xYLQJLxRT2Rc8vtY",
-      authDomain: "ionic-firebase-auth-9f555.firebaseapp.com",
-      databaseURL: "https://ionic-firebase-auth-9f555.firebaseio.com",
-      storageBucket: "ionic-firebase-auth-9f555.appspot.com",
-      messagingSenderId: "904481277327"
+     apiKey: "AIzaSyBmSoysC93_oxCfrx2UAxhImQhWJwjHaoQ",
+    authDomain: "sp-login-94206.firebaseapp.com",
+    databaseURL: "https://sp-login-94206.firebaseio.com",
+    projectId: "sp-login-94206",
+    storageBucket: "sp-login-94206.appspot.com",
+    messagingSenderId: "1016015253859"
     });
+
+
 
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       this.zone.run( () => {
@@ -33,11 +41,13 @@ export class MyApp {
           this.rootPage = LoginPage;
           unsubscribe();
         } else { 
-          this.rootPage = HomePage;
+          this.rootPage = TabsPage;
           unsubscribe();
         }
       });     
     });
+
+     
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

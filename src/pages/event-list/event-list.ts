@@ -20,7 +20,6 @@ export class EventListPage {
           id: snap.key,
           name: snap.val().name,
           price: snap.val().price,
-          date: snap.val().date,
         });
       return false
       });

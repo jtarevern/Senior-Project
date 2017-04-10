@@ -22,14 +22,12 @@ export class EventData {
     return this.eventList.child(eventId);
   }
 
-  createEvent(eventName: string, eventDate: string, eventPrice: number, 
-    eventCost: number): firebase.Promise<any> {
+  createEvent(eventName: string, eventCaption: string, 
+    eventHashtags: string): firebase.Promise<any> {
     return this.eventList.push({
       name: eventName,
-      date: eventDate,
-      price: eventPrice * 1,
-      cost: eventCost * 1,
-      revenue: eventCost * -1
+      caption: eventCaption,
+      hashtags: eventHashtags,
     });
   }
 
