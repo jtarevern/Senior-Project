@@ -20,7 +20,7 @@ export class UserProfilePage {
         rawList.push({
           id: snap.key,
           name: snap.val().name,
-          price: snap.val().price,
+          photo: snap.val().photo,
         });
       return false
       });

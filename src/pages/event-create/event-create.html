@@ -25,9 +25,9 @@
           Take a Picture
         </button>
 </ion-item>
+<img [src]="postPicture"  *ngIf="postPicture"/>
 
-
-  <button ion-button block (click)="createEvent(eventName, eventCaption, eventHashtags)">
+  <button ion-button block (click)="createEvent(eventName, eventCaption, eventHashtags)" *ngIf="postPicture">
     Create Event
   </button>
 </ion-content>
